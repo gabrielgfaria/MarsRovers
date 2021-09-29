@@ -5,7 +5,7 @@ You will find the executable located at the "/MarsRovers/bin/Release/net5.0".
 Just double click it and you will see the output for the program on the prompt screen.
 
 ## Customizing the input
-To customize the input just modify the file 'InputFile.txt' located at the root of the project with a valid input.
+To customize the input just modify the file 'InputFile.txt', located at the root of the project, with a valid input.
 
 ## Design and Assumptions
 
@@ -24,4 +24,3 @@ can be made that would send the rover to position (6, 5), for example.
 - In its movements a rover cannot collide with another rover.
 
 If any of the previously stated assumptions are to occur, an error will be displayed as output.
-
