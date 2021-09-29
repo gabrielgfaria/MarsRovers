@@ -9,7 +9,7 @@ To customize the input just modify the file 'InputFile.txt' located at the root 
 ## Design and Assumptions
 
 ### Design
-I designed the software in layers, each project has a different resonsability, as such:
+I designed the software in layers, each project has a different resonsibility, as such:
 
 - MarsRovers: Is the application layer, responsible for the dependency injection and input/output,
 - Services: Holds the business logic, in this layer you will find the code that does what the project is meant to do,
