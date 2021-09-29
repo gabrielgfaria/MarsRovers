@@ -4,11 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 namespace MarsRovers
 {
     public class Application : IApplication
     {
+        private readonly string FILE_PATH = "..\\..\\..\\..\\InputFile.txt";
+
         private readonly IPlateuService _plateauService;
         private readonly IRoverService _roverService;
 
@@ -21,11 +22,19 @@ namespace MarsRovers
 
         public void Run()
         {
-            var configurationAndCommands = File.ReadAllLines("..\\..\\..\\..\\InputFile.txt");
+            var configurationAndCommands = File.ReadAllLines(FILE_PATH);
 
-            ConfigurePlateauAndSendCommands(configurationAndCommands.ToList());
-            PrintOutRoversPositions();
-            Console.ReadLine();
+            try
+            {
+                ConfigurePlateauAndSendCommands(configurationAndCommands.ToList());
+                PrintOutRoversPositions();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine("\nPress any key to end the execution of this program.");
+            Console.ReadKey();
         }
 
         private void PrintOutRoversPositions()

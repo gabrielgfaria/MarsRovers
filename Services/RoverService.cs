@@ -8,8 +8,8 @@ namespace Services
 {
     public class RoverService : IRoverService
     {
-        private static readonly char[] _POSSIBLEHEADINGS = { 'N', 'E', 'S', 'W' };
-        private static readonly char[] _POSSIBLECOMMANDS = { 'L', 'R', 'M' };
+        private static readonly char[] POSSIBLE_HEADINGS = { 'N', 'E', 'S', 'W' };
+        private static readonly char[] POSSIBLE_COMMANDS = { 'L', 'R', 'M' };
 
         public void InitiateRover(Position initialPosition, string heading)
         {
@@ -161,7 +161,7 @@ namespace Services
                 if (simulatedRover.Position.X > Plateau.Boundaries.X || simulatedRover.Position.Y > Plateau.Boundaries.Y ||
                     simulatedRover.Position.X < 0 || simulatedRover.Position.Y < 0)
                 {
-                    throw new InvalidCommandException($"These commands would send the rover out of bounds: {requiredCommands}");
+                    throw new InvalidCommandException($"These commands would send {rover.Id} out of bounds: {requiredCommands}");
                 }
             }
         }
@@ -186,7 +186,7 @@ namespace Services
 
         private static void ValidateCommands(string commands)
         {
-            var invalidCommands = commands.Except(_POSSIBLECOMMANDS);
+            var invalidCommands = commands.Except(POSSIBLE_COMMANDS);
             if (invalidCommands.Any())
             {
                 throw new InvalidCommandException($"Invalid command detected: {invalidCommands}");
@@ -195,7 +195,7 @@ namespace Services
 
         private static void ValidateHeading(string heading)
         {
-            if (!_POSSIBLEHEADINGS.Select(x => x.ToString()).Contains(heading))
+            if (!POSSIBLE_HEADINGS.Select(x => x.ToString()).Contains(heading))
             {
                 throw new InvalidHeadingException(heading);
             }

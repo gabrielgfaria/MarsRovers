@@ -10,12 +10,13 @@ namespace UnitTests
     [TestClass]
     public class RoverServiceTests
     {
-        private readonly IRoverService target;
+        private readonly IRoverService _target;
 
         public RoverServiceTests()
         {
+            _target = new RoverService();
+            
             Plateau.SetBoundaries(boundaries: (5, 5));
-            target = new RoverService();
         }
 
         [TestMethod]
@@ -31,7 +32,7 @@ namespace UnitTests
             var position = new Position { X = expectedXCoordinate, Y = expectedYCoordinate };
 
             // Act
-            target.InitiateRover(position, heading);
+            _target.InitiateRover(position, heading);
 
             // Assert
             RoverMap.Rovers.Count.ShouldBe(1);
@@ -49,7 +50,7 @@ namespace UnitTests
             var position = new Position { X = expectedXCoordinate, Y = expectedYCoordinate };
 
             // Assert
-            Should.Throw<InvalidInitialPositionException>(() => target.InitiateRover(position, heading));
+            Should.Throw<InvalidInitialPositionException>(() => _target.InitiateRover(position, heading));
         }
 
         [TestMethod]
@@ -66,7 +67,7 @@ namespace UnitTests
             var position = new Position { X = expectedXCoordinate, Y = expectedYCoordinate };
 
             // Assert
-            Should.Throw<InvalidHeadingException>(() => target.InitiateRover(position, heading));
+            Should.Throw<InvalidHeadingException>(() => _target.InitiateRover(position, heading));
         }
 
         [TestMethod]
@@ -86,7 +87,7 @@ namespace UnitTests
             var position = new Position { X = expectedXCoordinateRover2, Y = expectedYCoordinateRover2 };
 
             // Assert
-            Should.Throw<InvalidCommandException>(() => target.InitiateRover(position, headingRover2));
+            Should.Throw<InvalidCommandException>(() => _target.InitiateRover(position, headingRover2));
         }
 
         [TestMethod]
@@ -109,7 +110,7 @@ namespace UnitTests
             AddRoverToMap(initialXCoordinate, initialYCoordinate, initialHeading);
 
             // Act
-            target.SendCommands(commands);
+            _target.SendCommands(commands);
 
             // Assert
             RoverMap.RoversLocation.ContainsKey(new Position() { X = expectedXCoordinate, Y = expectedYCoordinate }).ShouldBeTrue();
@@ -133,7 +134,7 @@ namespace UnitTests
             AddRoverToMap(initialXCoordinateRover2, initialYCoordinateRover2, initialHeadingRover2);
 
             // Assert
-            Should.Throw<InvalidCommandException>(() => target.SendCommands(commands));
+            Should.Throw<InvalidCommandException>(() => _target.SendCommands(commands));
         }
 
         [TestMethod]
@@ -149,7 +150,7 @@ namespace UnitTests
             AddRoverToMap(initialXCoordinate, initialYCoordinate, initialHeading);
 
             // Assert
-            Should.Throw<InvalidCommandException>(() => target.SendCommands(commands));
+            Should.Throw<InvalidCommandException>(() => _target.SendCommands(commands));
         }
 
         private void AddRoverToMap(int initialXCoordinate,
@@ -159,7 +160,7 @@ namespace UnitTests
             var position = new Position { X = initialXCoordinate, Y = initialYCoordinate };
             var heading = initialHeading;
 
-            target.InitiateRover(position, heading.ToString());
+            _target.InitiateRover(position, heading.ToString());
         }
 
         [TestCleanup]

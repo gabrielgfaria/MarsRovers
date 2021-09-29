@@ -2,7 +2,6 @@
 
 namespace Services.Exceptions
 {
-    [Serializable]
     public class InvalidHeadingException : Exception
     {
         public InvalidHeadingException() { }
