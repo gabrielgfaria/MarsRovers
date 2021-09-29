@@ -1,6 +1,7 @@
 ﻿using Models;
 using Services.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Services
@@ -38,6 +39,17 @@ namespace Services
             {
                 ExecuteCommand(rover, command);
             }
+        }
+
+        public List<string> GetRoversPositionsAndHeading()
+        {
+            var roversPositionsAndHeadings = new List<string>();
+            foreach(var roverPositionAndHeading in RoverMap.RoversLocation)
+            {
+                roversPositionsAndHeadings.Add($"{roverPositionAndHeading.Key.X} {roverPositionAndHeading.Key.Y} {roverPositionAndHeading.Value.Heading}");
+            }
+
+            return roversPositionsAndHeadings;
         }
 
         private static void TurnRight(Rover rover)

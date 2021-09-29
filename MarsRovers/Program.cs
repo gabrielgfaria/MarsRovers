@@ -1,20 +1,23 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services;
+using System.Threading.Tasks;
 
 namespace MarsRovers
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var serviceProvider = new ServiceCollection()
+                .AddLogging()
+                .AddSingleton<IApplication, Application>()
+                .AddSingleton<IPlateuService, PlateuService>()
+                .AddSingleton<IRoverService, RoverService>()
+                .BuildServiceProvider();
 
-        static IHostBuilder CreateHostBuilder(string[] args)
-            => Host.CreateDefaultBuilder(args)
-                .ConfigureServices((_, services) =>
-                    services.AddSingleton<IPlateuService, PlateuService>()
-                    .AddSingleton<IRoverService, RoverService>());
+            var app = serviceProvider.GetService<IApplication>();
+            app.Run();
+        }
     }
 }

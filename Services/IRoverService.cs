@@ -1,4 +1,5 @@
 ﻿using Models;
+using System.Collections.Generic;
 
 namespace Services
 {
@@ -6,5 +7,6 @@ namespace Services
     {
         void InitiateRover(Position initialPosition, string heading);
         void SendCommands(string requiredCommands);
+        List<string> GetRoversPositionsAndHeading(); 
     }
 }
