@@ -96,15 +96,15 @@ namespace MarsRovers
             return position;
         }
 
-        private static (int x, int y) GetPlateauConfiguration(List<string> configurationAndCommands)
+        private static Position GetPlateauConfiguration(List<string> configurationAndCommands)
         {
             var rawConfiguration = configurationAndCommands.First().Split(' ');
-            (int x, int y) plateauBoundaries;
+            Position plateauBoundaries = new Position();
 
             try
             {
-                plateauBoundaries.x = int.Parse(rawConfiguration.First());
-                plateauBoundaries.y = int.Parse(rawConfiguration.Last());
+                plateauBoundaries.X = int.Parse(rawConfiguration.First());
+                plateauBoundaries.Y = int.Parse(rawConfiguration.Last());
             }
             catch (Exception)
             {

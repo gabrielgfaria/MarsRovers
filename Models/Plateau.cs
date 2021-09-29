@@ -2,9 +2,9 @@
 {
     public static class Plateau
     {
-        public static (int X, int Y) Boundaries { get; set; }
+        public static Position Boundaries { get; set; }
 
-        public static void SetBoundaries((int x, int y) boundaries)
+        public static void SetBoundaries(Position boundaries)
         {
             Boundaries = boundaries;
         }

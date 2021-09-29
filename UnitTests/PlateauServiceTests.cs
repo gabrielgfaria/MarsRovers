@@ -23,7 +23,7 @@ namespace UnitTests
         public void SettingBoundariesWithValidValuesShouldSetBoundaries(int xBoundary, int yBoundary)
         {
             // Arrange
-            var boundaries = (xBoundary, yBoundary);
+            var boundaries = new Position() { X = xBoundary, Y = yBoundary};
 
             // Act
             _target.EstablishBoundaries(boundaries);
@@ -39,7 +39,7 @@ namespace UnitTests
         public void SettingBoundariesWithInvalidValuesShouldSetBoundaries(int xBoundary, int yBoundary)
         {
             // Arrange
-            var boundaries = (xBoundary, yBoundary);
+            var boundaries = new Position() { X = xBoundary, Y = yBoundary };
 
             // Assert
             Should.Throw<InvalidBoundariesException>(() => _target.EstablishBoundaries(boundaries));

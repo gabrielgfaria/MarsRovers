@@ -5,15 +5,15 @@ namespace Services
 {
     public class PlateuService : IPlateuService
     {
-        public void EstablishBoundaries((int x, int y) boundaries)
+        public void EstablishBoundaries(Position boundaries)
         {
             ValidateBoundaries(boundaries);
             Plateau.SetBoundaries(boundaries);
         }
 
-        private static void ValidateBoundaries((int x, int y) boundaries)
+        private static void ValidateBoundaries(Position boundaries)
         {
-            if (boundaries.x < 0 || boundaries.y < 0)
+            if (boundaries.X < 0 || boundaries.Y < 0)
             {
                 throw new InvalidBoundariesException(boundaries.ToString());
             }

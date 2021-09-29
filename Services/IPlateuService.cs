@@ -1,7 +1,9 @@
-﻿namespace Services
+﻿using Models;
+
+namespace Services
 {
     public interface IPlateuService
     {
-        void EstablishBoundaries((int x, int y) boundaries);
+        void EstablishBoundaries(Position boundaries);
     }
 }

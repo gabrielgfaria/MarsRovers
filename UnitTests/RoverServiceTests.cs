@@ -16,7 +16,7 @@ namespace UnitTests
         {
             _target = new RoverService();
             
-            Plateau.SetBoundaries(boundaries: (5, 5));
+            Plateau.SetBoundaries(new Position() { X = 5, Y = 5 });
         }
 
         [TestMethod]
