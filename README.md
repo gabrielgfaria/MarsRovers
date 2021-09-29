@@ -4,6 +4,7 @@
 You will find the executable located at the "/MarsRovers/bin/Release/net5.0".
 Just double click it and you will see the output for the program on the prompt screen.
 
+## Customizing the input
 To customize the input just modify the file 'InputFile.txt' located at the root of the project with a valid input.
 
 ## Design and Assumptions
